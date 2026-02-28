@@ -1,0 +1,74 @@
+robot_env: {
+  # TODO change the path to the correct one
+  rm_left_arm: '/home/rm/aloha/shadow_rm_aloha/config/rm_left_arm.yaml',
+  rm_right_arm: '/home/rm/aloha/shadow_rm_aloha/config/rm_right_arm.yaml',
+  arm_axis: 6,
+  head_camera: '216322072011',
+  left_camera: '216322071292',
+  bottom_camera: '215322075406',
+  right_camera: '152122072656',
+  init_left_arm_angle: [ 1.934 ,37.795 ,45.672, -0.682, 80.126,  6.501,0.99],
+  init_right_arm_angle: [-2.286 , 37.703,  42.801 ,  0.789  ,80.506 ,-18.899, 0.99]
+  #init_left_arm_angle: [6.45, 66.093, 2.9, 20.919, -1.491, 100.756, 18.808, 0.617],
+ # init_right_arm_angle: [166.953, -33.575, -163.917, 73.3, -9.581, 69.51, 0.876]
+}
+dataset_dir: '/home/rm/demo_pick_up'
+checkpoint_dir: '/home/rm/cwt/chemistry_task_throw_dpkt'
+# checkpoint_name: 'policy_best.ckpt'
+checkpoint_name: 'policy_new_step_2500_seed_500.ckpt'
+state_dim: 14
+save_episode: True
+num_rollouts: 3
+real_robot: True
+policy_class: 'ACT'
+onscreen_render: False
+camera_names: ['cam_high', 'cam_low', 'cam_left', 'cam_right']
+episode_len: 350
+task_name: 'aloha_01_11.28_zjy'
+temporal_agg: False
+batch_size: 12
+seed: 500
+chunk_size: 30 
+eval_every: 1
+num_steps: 2000
+validate_every: 1
+save_every: 500 
+load_pretrain: False
+resume_ckpt_path: 
+name_filter:  # TODO
+skip_mirrored_data: False 
+stats_dir:  
+sample_weights:  
+train_ratio: 0.8 
+
+policy_config: {
+  hidden_dim: 512, # Size of the embeddings (dimension of the transformer)
+  state_dim: 14, # Dimension of the state
+  position_embedding: 'sine', # ('sine', 'learned').Type of positional embedding to use on top of the image features
+  lr_backbone: 1.0e-5,
+  masks: False, # If true, the model masks the non-visible pixels
+  backbone: 'resnet18',
+  dilation: False, # If true, we replace stride with dilation in the last convolutional block (DC5)
+  dropout: 0.1, # Dropout applied in the transformer
+  nheads: 8,
+  dim_feedforward: 3200, # Intermediate size of the feedforward layers in the transformer blocks
+  enc_layers: 4, # Number of encoding layers in the transformer
+  dec_layers: 7, # Number of decoding layers in the transformer
+  pre_norm: False, # If true, apply LayerNorm to the input instead of the output of the MultiheadAttention and FeedForward
+  num_queries: 30,
+  camera_names: ['cam_high', 'cam_low', 'cam_left', 'cam_right'],
+  vq: False,
+  vq_class: none,
+  vq_dim: 64,
+  action_dim: 14,
+  no_encoder: False,
+  lr: 1.0e-5,
+  weight_decay: 1.0e-4,
+  kl_weight: 10,
+
+  # lr_drop: 200,
+  # clip_max_norm: 0.1,
+}
+
+
+

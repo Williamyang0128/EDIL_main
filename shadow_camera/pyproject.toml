@@ -1,0 +1,33 @@
+[tool.poetry]
+name = "shadow_camera"
+version = "0.1.0"
+description = "camera class, currently includes realsense"
+readme = "README.md"
+authors = ["Shadow <qiuchengzhan@gmail.com>"]
+license = "MIT"
+#include = ["realman_vision/pytransform/_pytransform.so",]
+classifiers = [
+    "Operating System :: POSIX :: Linux amd64",
+    "Programming Language :: Python :: 3.10",
+]
+
+[tool.poetry.dependencies]
+python = ">=3.9"
+numpy = ">=2.0.1"
+opencv-python = ">=4.10.0.84"
+pyrealsense2 = ">=2.55.1.6486"
+
+[tool.poetry.dev-dependencies] # 列出开发时所需的依赖项，比如测试、文档生成等工具。
+pytest = ">=8.3"
+black = ">=24.10.0"
+
+[tool.poetry.plugins."scripts"] # 定义命令行脚本，使得用户可以通过命令行运行指定的函数。
+
+
+[tool.poetry.group.dev.dependencies]
+
+
+
+[build-system]
+requires = ["poetry-core>=1.8.4"]
+build-backend = "poetry.core.masonry.api"
