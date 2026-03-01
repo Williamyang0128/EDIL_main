@@ -241,20 +241,14 @@ class RmActEvaluator:
                             gripper_pred_left = pred_l_tensor.item()
                             gripper_pred_right = pred_r_tensor.item()
 
-                        # --- 3. Gripper Logic: Continuous Control with optional filtering ---
-                        # Use raw continuous values directly if they are clean.
-                        # Sigmoid outputs [0, 1].
-                        # If you need a hard threshold for 'closing', you can keep it, 
-                        # but if you want full continuous control, just pass the value.
-                        
-                        # Simple noise filter: If value is very low (likely open), clamp to 0 (Open)
-                        # This prevents the gripper from jittering near the open state.
-                        # Adjust 0.35/0.2 based on real-world sensitivity.
+                        # --- 3. Gripper Logic: Continuous Control ---
+                        # Use raw continuous values directly from Sigmoid output [0, 1].
+                        # No hard thresholding is applied to ensure full continuous control.
                         
                         print(f"t={t}, Raw L:{gripper_pred_left:.4f}, Raw R:{gripper_pred_right:.4f}")
 
-                        gripper_confirm_left = gripper_pred_left if gripper_pred_left > 0.35 else 0.0
-                        gripper_confirm_right = gripper_pred_right if gripper_pred_right > 0.2 else 0.0
+                        gripper_confirm_left = gripper_pred_left
+                        gripper_confirm_right = gripper_pred_right
                         
                         # Note: If your gripper uses 1.0 for Closed and 0.0 for Open (or vice versa),
                         # ensure this matches your training labels. 
