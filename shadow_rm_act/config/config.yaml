@@ -1,30 +1,27 @@
 robot_env: {
   # TODO change the path to the correct one
-  rm_left_arm: '/home/rm/aloha/shadow_rm_aloha/config/rm_left_arm.yaml',
-  rm_right_arm: '/home/rm/aloha/shadow_rm_aloha/config/rm_right_arm.yaml',
+  rm_left_arm: 'PATH/TO/YOUR/rm_left_arm.yaml',
+  rm_right_arm: 'PATH/TO/YOUR/rm_right_arm.yaml',
   arm_axis: 6,
-  head_camera: '216322072011',
-  left_camera: '216322071292',
-  bottom_camera: '215322075406',
-  right_camera: '152122072656',
-  init_left_arm_angle: [ 1.934 ,37.795 ,45.672, -0.682, 80.126,  6.501,0.99],
-  init_right_arm_angle: [-2.286 , 37.703,  42.801 ,  0.789  ,80.506 ,-18.899, 0.99]
-  #init_left_arm_angle: [6.45, 66.093, 2.9, 20.919, -1.491, 100.756, 18.808, 0.617],
- # init_right_arm_angle: [166.953, -33.575, -163.917, 73.3, -9.581, 69.51, 0.876]
+  head_camera: 'your_number',
+  left_camera: 'your_number',
+  bottom_camera: 'your_number',
+  right_camera: 'your_number',
+  init_left_arm_angle: [...],
+  init_right_arm_angle: [...]
 }
-dataset_dir: '/home/rm/demo_pick_up'
-checkpoint_dir: '/home/rm/cwt/chemistry_task_throw_dpkt'
-# checkpoint_name: 'policy_best.ckpt'
-checkpoint_name: 'policy_new_step_2500_seed_500.ckpt'
+dataset_dir: ''PATH/TO/YOUR/DATASET'
+checkpoint_dir: ''PATH/TO/YOUR/Checkpoint'
+checkpoint_name: 'xxx.ckpt'
 state_dim: 14
 save_episode: True
 num_rollouts: 3
 real_robot: True
-policy_class: 'ACT'
+policy_class: 'MMArmPolicy'
 onscreen_render: False
 camera_names: ['cam_high', 'cam_low', 'cam_left', 'cam_right']
-episode_len: 350
-task_name: 'aloha_01_11.28_zjy'
+episode_len: 350(YOUR OWN LEN)
+task_name: 'YOUR_TASK_NAME'
 temporal_agg: False
 batch_size: 12
 seed: 500
@@ -42,8 +39,8 @@ sample_weights:
 train_ratio: 0.8 
 
 policy_config: {
-  hidden_dim: 512, # Size of the embeddings (dimension of the transformer)
-  state_dim: 14, # Dimension of the state
+  hidden_dim: ...
+  state_dim: ...
   position_embedding: 'sine', # ('sine', 'learned').Type of positional embedding to use on top of the image features
   lr_backbone: 1.0e-5,
   masks: False, # If true, the model masks the non-visible pixels
@@ -51,9 +48,9 @@ policy_config: {
   dilation: False, # If true, we replace stride with dilation in the last convolutional block (DC5)
   dropout: 0.1, # Dropout applied in the transformer
   nheads: 8,
-  dim_feedforward: 3200, # Intermediate size of the feedforward layers in the transformer blocks
-  enc_layers: 4, # Number of encoding layers in the transformer
-  dec_layers: 7, # Number of decoding layers in the transformer
+  dim_feedforward: ..., # Intermediate size of the feedforward layers in the transformer blocks
+  enc_layers: ..., # Number of encoding layers in the transformer
+  dec_layers: ..., # Number of decoding layers in the transformer
   pre_norm: False, # If true, apply LayerNorm to the input instead of the output of the MultiheadAttention and FeedForward
   num_queries: 30,
   camera_names: ['cam_high', 'cam_low', 'cam_left', 'cam_right'],
