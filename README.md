@@ -19,7 +19,8 @@ The structure of the HDF5 file includes:
   - Columns 0-6: Left arm joint angles (6 joints) + Left gripper state.
   - Columns 7-13: Right arm joint angles (6 joints) + Right gripper state.
 - `**observations/images**`: A group containing image data from multiple camera views.
-  - `cam_high`: Top-down view camera frames.
+  - `cam_high`: Top view camera frames.
+  - `cam_bottom`: Bottom view camera frames.
   - `cam_left`: Left wrist camera frames.
   - `cam_right`: Right wrist camera frames.
 
